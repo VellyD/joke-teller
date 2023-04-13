@@ -105,17 +105,30 @@ const VoiceRSS = {
   },
 };
 
-function talk() {
-  VoiceRSS.speech({
-    key: "8fddb9759b1d4d269902bc66bc8a1b65",
-    src: "Hello, Tim!",
-    hl: "en-us",
-    v: "Linda",
-    r: 0,
-    c: "mp3",
-    f: "44khz_16bit_stereo",
-    ssml: false,
-  });
+// function talk() {
+//   VoiceRSS.speech({
+//     key: "8fddb9759b1d4d269902bc66bc8a1b65",
+//     src: "Hello, Tim!",
+//     hl: "en-us",
+//     v: "Linda",
+//     r: 0,
+//     c: "mp3",
+//     f: "44khz_16bit_stereo",
+//     ssml: false,
+//   });
+// }
+
+// talk();
+
+async function getJokes() {
+  const jokesAPI = "https://v2.jokeapi.dev/joke/Programming";
+  try {
+    const response = await fetch(jokesAPI);
+    const data = await response.json();
+    console.log(data.joke);
+  } catch (err) {
+    alert("Server error" + err);
+  }
 }
 
-talk();
+getJokes();
