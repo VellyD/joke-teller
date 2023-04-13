@@ -121,11 +121,18 @@ const VoiceRSS = {
 // talk();
 
 async function getJokes() {
+  let joke = "";
   const jokesAPI = "https://v2.jokeapi.dev/joke/Programming";
   try {
     const response = await fetch(jokesAPI);
     const data = await response.json();
-    console.log(data.joke);
+    if (data.setup) {
+      joke = `${data.setup} ... ${data.delivery}`;
+    } else {
+      joke = data.joke;
+    }
+
+    console.log(joke);
   } catch (err) {
     alert("Server error" + err);
   }
